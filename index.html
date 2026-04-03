@@ -22,8 +22,6 @@ h1{
   margin-bottom:10px;
   text-shadow:1px 1px 5px rgba(0,0,0,0.3);
 }
-
-/* View SEE Rules text really thin */
 #viewRulesText{
   display:block;
   text-align:center;
@@ -31,12 +29,10 @@ h1{
   color:white;
   text-decoration:underline;
   cursor:pointer;
-  font-weight:200; /* really thin font */
+  font-weight:200;
   transition:0.2s;
 }
 #viewRulesText:hover{color:#ffeb3b;}
-
-/* Countdown + progress */
 #countdown{
   text-align:center;
   font-size:20px;
@@ -59,8 +55,6 @@ h1{
   border-radius:20px;
   transition:width 1s linear;
 }
-
-/* Routine table */
 table{
   width:100%;
   border-collapse:collapse;
@@ -79,6 +73,12 @@ th{
   background:#ffeaa7;
   color:black;
 }
+/* Finished exam red highlight */
+.finishedExam{
+  background:#ff4d4d !important;
+  color:white;
+  text-decoration:line-through;
+}
 </style>
 </head>
 <body>
@@ -86,7 +86,6 @@ th{
 <div class="container">
 <h1>SEE Technical Routine</h1>
 
-<!-- View SEE Rules -->
 <span id="viewRulesText" onclick="openRules()">View SEE Rules</span>
 
 <div id="countdown">Loading...</div>
@@ -98,7 +97,7 @@ th{
 <tr><td>April 3 2026</td><td>Nepali</td><td>8:00 AM - 11:00 AM</td></tr>
 <tr><td>April 5 2026</td><td>Mathematics</td><td>8:00 AM - 11:00 AM</td></tr>
 <tr><td>April 6 2026</td><td>Science</td><td>8:00 AM - 11:00 AM</td></tr>
-<tr><td>April 7 2026</td><td>OPT.Maths</td></td><td>8:00 AM - 11:00 AM</td></tr>
+<tr><td>April 7 2026</td><td>OPT.Maths</td><td>8:00 AM - 11:00 AM</td></tr>
 <tr><td>April 8 2026</td><td>OOP</td><td>8:00 AM - 11:00 AM</td></tr>
 <tr><td>April 9 2026</td><td>CHERM</td><td>8:00 AM - 11:00 AM</td></tr>
 <tr><td>April 10 2026</td><td>DBMS</td><td>8:00 AM - 11:00 AM</td></tr>
@@ -106,7 +105,6 @@ th{
 </table>
 </div>
 
-<!-- Center popup rules panel -->
 <div id="rulesPanel" style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(0);width:85%;max-width:500px;background:rgba(255,255,255,0.95);color:#333;padding:20px 25px;border-radius:20px;box-shadow:0 15px 40px rgba(0,0,0,0.4);z-index:200;transition:0.4s cubic-bezier(0.68,-0.55,0.27,1.55);opacity:0;">
 <a class="closeBtn" onclick="closeRules()" style="position:absolute;top:10px;right:15px;font-size:25px;text-decoration:none;color:#333;cursor:pointer;">&times;</a>
 <h2>SEE Exam Rules</h2>
@@ -152,21 +150,30 @@ function updateCountdown(){
   if(!nextExam){
     document.getElementById("countdown").innerText="All exams completed!";
     document.getElementById("progress").style.width="100%";
-    return;
-  }
-  let now=new Date();
-  let distance=nextExam-now;
-  let days=Math.floor(distance/(1000*60*60*24));
-  let hours=Math.floor((distance%(1000*60*60*24))/(1000*60*60));
-  let minutes=Math.floor((distance%(1000*60*60))/(1000*60));
-  let seconds=Math.floor((distance%(1000*60))/1000);
-  document.getElementById("countdown").innerText=`Next Exam In: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+  } else {
+    let now=new Date();
+    let distance=nextExam-now;
+    let days=Math.floor(distance/(1000*60*60*24));
+    let hours=Math.floor((distance%(1000*60*60*24))/(1000*60*60));
+    let minutes=Math.floor((distance%(1000*60*60))/(1000*60));
+    let seconds=Math.floor((distance%(1000*60))/1000);
+    document.getElementById("countdown").innerText=`Next Exam In: ${days}d ${hours}h ${minutes}m ${seconds}s`;
 
-  // Reverse green bar: full green initially, decreases as time decreases
-  let totalMs = 24*60*60*1000; // 24 hours
-  let remainingMs = distance>totalMs?totalMs:distance;
-  let percent = (remainingMs/totalMs)*100; // green decreases with time
-  document.getElementById("progress").style.width = percent + "%";
+    let totalMs = 24*60*60*1000;
+    let remainingMs = distance>totalMs?totalMs:distance;
+    let percent = (remainingMs/totalMs)*100;
+    document.getElementById("progress").style.width = percent + "%";
+  }
+
+  // ✅ Mark finished exams
+  let table=document.getElementById("routine");
+  let nowTime = new Date().getTime();
+  for(let i=1;i<table.rows.length;i++){
+    let examDate = new Date(table.rows[i].cells[0].innerText + " 08:00:00").getTime();
+    if(examDate < nowTime){
+      table.rows[i].classList.add("finishedExam");
+    }
+  }
 }
 
 setInterval(updateCountdown,1000);
