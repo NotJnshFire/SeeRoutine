@@ -3,21 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<!-- Thin Poppins Font Load -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300&display=swap" rel="stylesheet">
-
 <title>SEE Technical Routine</title>
 
 <style>
-
 body{
   font-family:'Poppins',sans-serif;
-  font-weight:300;
   margin:0;
   background:linear-gradient(135deg,#667eea,#764ba2);
   color:#fff;
   transition:0.3s;
+}
+
+/* ✅ THIN FONT FOR ALL DEVICES */
+*{
+  font-weight:300 !important;
 }
 
 .container{
@@ -25,14 +24,11 @@ body{
   margin:auto;
   padding:20px;
 }
-
 h1{
   text-align:center;
   margin-bottom:10px;
   text-shadow:1px 1px 5px rgba(0,0,0,0.3);
-  font-weight:300;
 }
-
 #viewRulesText{
   display:block;
   text-align:center;
@@ -40,22 +36,15 @@ h1{
   color:white;
   text-decoration:underline;
   cursor:pointer;
-  font-weight:200;
   transition:0.2s;
 }
-
-#viewRulesText:hover{
-  color:#ffeb3b;
-}
-
+#viewRulesText:hover{color:#ffeb3b;}
 #countdown{
   text-align:center;
   font-size:20px;
   margin:10px 0;
   text-shadow:1px 1px 3px rgba(0,0,0,0.4);
-  font-weight:300;
 }
-
 .progress-box{
   width:100%;
   height:25px;
@@ -65,7 +54,6 @@ h1{
   margin:15px 0;
   box-shadow:inset 0 2px 5px rgba(0,0,0,0.2);
 }
-
 .progress{
   height:100%;
   width:100%;
@@ -73,63 +61,44 @@ h1{
   border-radius:20px;
   transition:width 1s linear;
 }
-
 table{
   width:100%;
   border-collapse:collapse;
   margin-top:15px;
   color:white;
-  font-weight:300;
 }
-
 th, td{
   padding:12px;
   text-align:center;
   border:1px solid rgba(255,255,255,0.3);
-  font-weight:300;
 }
-
 th{
   background:rgba(102,126,234,0.8);
 }
-
 .highlight{
   background:#ffeaa7;
   color:black;
 }
-
-/* Finished exam red highlight */
 .finishedExam{
   background:#ff4d4d !important;
   color:white;
   text-decoration:line-through;
 }
-
 </style>
 </head>
 
 <body>
 
 <div class="container">
-
 <h1>SEE Technical Routine</h1>
 
 <span id="viewRulesText" onclick="openRules()">View SEE Rules</span>
 
 <div id="countdown">Loading...</div>
-
-<div class="progress-box">
-<div class="progress" id="progress"></div>
-</div>
+<div class="progress-box"><div class="progress" id="progress"></div></div>
 
 <table id="routine">
-
-<tr>
-<th>Date</th>
-<th>Subject</th>
-<th>Time</th>
-</tr>
-
+<tr><th>Date</th><th>Subject</th><th>Time</th></tr>
 <tr><td>April 2 2026</td><td>English</td><td>8:00 AM - 11:00 AM</td></tr>
 <tr><td>April 3 2026</td><td>Nepali</td><td>8:00 AM - 11:00 AM</td></tr>
 <tr><td>April 5 2026</td><td>Mathematics</td><td>8:00 AM - 11:00 AM</td></tr>
@@ -140,17 +109,12 @@ th{
 <tr><td>April 10 2026</td><td>DBMS</td><td>8:00 AM - 10:00 AM</td></tr>
 <tr><td>April 11 2026</td><td>Holiday</td><td>----------</td></tr>
 <tr><td>April 12 2026</td><td>DDMP</td><td>8:00 AM - 10:00 AM</td></tr>
-
 </table>
-
 </div>
 
-<div id="rulesPanel" style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(0);width:85%;max-width:500px;background:rgba(255,255,255,0.95);color:#333;padding:20px 25px;border-radius:20px;box-shadow:0 15px 40px rgba(0,0,0,0.4);z-index:200;transition:0.4s cubic-bezier(0.68,-0.55,0.27,1.55);opacity:0;">
-
-<a onclick="closeRules()" style="position:absolute;top:10px;right:15px;font-size:25px;text-decoration:none;color:#333;cursor:pointer;">&times;</a>
-
+<div id="rulesPanel" style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(0);width:85%;max-width:500px;background:rgba(255,255,255,0.95);color:#333;padding:20px 25px;border-radius:20px;box-shadow:0 15px 40px rgba(0,0,0,0.4);z-index:200;transition:0.4s;opacity:0;">
+<a onclick="closeRules()" style="position:absolute;top:10px;right:15px;font-size:25px;cursor:pointer;">&times;</a>
 <h2>SEE Exam Rules</h2>
-
 <ul>
 <li>Arrive 30 mins before exam start.</li>
 <li>No electronic devices allowed inside.</li>
@@ -166,117 +130,18 @@ th{
 <li>Wear proper uniform if required.</li>
 <li>Stay calm & focused during exams.</li>
 </ul>
-
 </div>
 
 <script>
-
 function openRules(){
-document.getElementById("rulesPanel").style.transform="translate(-50%,-50%) scale(1)";
-document.getElementById("rulesPanel").style.opacity="1";
+  document.getElementById("rulesPanel").style.transform="translate(-50%,-50%) scale(1)";
+  document.getElementById("rulesPanel").style.opacity="1";
 }
-
 function closeRules(){
-document.getElementById("rulesPanel").style.transform="translate(-50%,-50%) scale(0)";
-document.getElementById("rulesPanel").style.opacity="0";
+  document.getElementById("rulesPanel").style.transform="translate(-50%,-50%) scale(0)";
+  document.getElementById("rulesPanel").style.opacity="0";
 }
 
-let examDates=[
-new Date("April 2 2026 08:00:00"),
-new Date("April 3 2026 08:00:00"),
-new Date("April 5 2026 08:00:00"),
-new Date("April 6 2026 08:00:00"),
-new Date("April 7 2026 08:00:00"),
-new Date("April 8 2026 08:00:00"),
-new Date("April 9 2026 08:00:00"),
-new Date("April 10 2026 08:00:00"),
-new Date("April 12 2026 08:00:00")
-];
-
-function getNextExam(){
-let now=new Date().getTime();
-for(let d of examDates){
-if(d.getTime()>now) return d;
-}
-return null;
-}
-
-function updateCountdown(){
-
-let nextExam=getNextExam();
-
-if(!nextExam){
-document.getElementById("countdown").innerText="All exams completed!";
-document.getElementById("progress").style.width="100%";
-}
-
-else{
-
-let now=new Date();
-let distance=nextExam-now;
-
-let days=Math.floor(distance/(1000*60*60*24));
-let hours=Math.floor((distance%(1000*60*60*24))/(1000*60*60));
-let minutes=Math.floor((distance%(1000*60*60))/(1000*60));
-let seconds=Math.floor((distance%(1000*60))/1000);
-
-document.getElementById("countdown").innerText=
-`Next Exam In: ${days}d ${hours}h ${minutes}m ${seconds}s`;
-
-let totalMs = 24*60*60*1000;
-let remainingMs = distance>totalMs?totalMs:distance;
-let percent = (remainingMs/totalMs)*100;
-
-document.getElementById("progress").style.width = percent + "%";
-}
-
-let table=document.getElementById("routine");
-let nowTime = new Date().getTime();
-
-for(let i=1;i<table.rows.length;i++){
-
-let examDate =
-new Date(table.rows[i].cells[0].innerText + " 08:00:00").getTime();
-
-if(examDate < nowTime){
-table.rows[i].classList.add("finishedExam");
-}
-
-}
-
-}
-
-setInterval(updateCountdown,1000);
-updateCountdown();
-
-</script>
-
-</body>
-</html><a class="closeBtn" onclick="closeRules()" style="position:absolute;top:10px;right:15px;font-size:25px;text-decoration:none;color:#333;cursor:pointer;">&times;</a>
-<h2>SEE Exam Rules</h2>
-<ul>
-<li>Arrive 30 mins before exam start.</li>
-<li>No electronic devices allowed inside.</li>
-<li>Carry admit card and valid ID.</li>
-<li>Follow invigilator instructions strictly.</li>
-<li>Maintain discipline at all times.</li>
-<li>No sharing of question papers or answers.</li>
-<li>Use only allowed stationery.</li>
-<li>Report any malpractice immediately.</li>
-<li>Do not disturb other candidates.</li>
-<li>Follow seating arrangement properly.</li>
-<li>Bring your own water bottle if needed.</li>
-<li>Wear proper uniform if required.</li>
-<li>Stay calm & focused during exams.</li>
-</ul>
-</div>
-
-<script>
-// Open/close rules
-function openRules(){document.getElementById("rulesPanel").style.transform="translate(-50%,-50%) scale(1)";document.getElementById("rulesPanel").style.opacity="1";}
-function closeRules(){document.getElementById("rulesPanel").style.transform="translate(-50%,-50%) scale(0)";document.getElementById("rulesPanel").style.opacity="0";}
-
-// Exam dates
 let examDates=[
   new Date("April 2 2026 08:00:00"),
   new Date("April 3 2026 08:00:00"),
@@ -286,38 +151,49 @@ let examDates=[
   new Date("April 8 2026 08:00:00"),
   new Date("April 9 2026 08:00:00"),
   new Date("April 10 2026 08:00:00"),
-  new Date("April 11 2026 --------"),
+  new Date("April 11 2026 08:00:00"),
   new Date("April 12 2026 08:00:00")
 ];
 
-function getNextExam(){let now=new Date().getTime();for(let d of examDates){if(d.getTime()>now)return d;}return null;}
+function getNextExam(){
+  let now=new Date().getTime();
+  for(let d of examDates){
+    if(d.getTime()>now) return d;
+  }
+  return null;
+}
 
 function updateCountdown(){
   let nextExam=getNextExam();
+
   if(!nextExam){
     document.getElementById("countdown").innerText="All exams completed!";
     document.getElementById("progress").style.width="100%";
-  } else {
-    let now=new Date();
-    let distance=nextExam-now;
-    let days=Math.floor(distance/(1000*60*60*24));
-    let hours=Math.floor((distance%(1000*60*60*24))/(1000*60*60));
-    let minutes=Math.floor((distance%(1000*60*60))/(1000*60));
-    let seconds=Math.floor((distance%(1000*60))/1000);
-    document.getElementById("countdown").innerText=`Next Exam In: ${days}d ${hours}h ${minutes}m ${seconds}s`;
-
-    let totalMs = 24*60*60*1000;
-    let remainingMs = distance>totalMs?totalMs:distance;
-    let percent = (remainingMs/totalMs)*100;
-    document.getElementById("progress").style.width = percent + "%";
+    return;
   }
 
-  // ✅ Mark finished exams
+  let now=new Date();
+  let distance=nextExam-now;
+
+  let days=Math.floor(distance/(1000*60*60*24));
+  let hours=Math.floor((distance%(1000*60*60*24))/(1000*60*60));
+  let minutes=Math.floor((distance%(1000*60*60))/(1000*60));
+  let seconds=Math.floor((distance%(1000*60))/1000);
+
+  document.getElementById("countdown").innerText=
+  `Next Exam In: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+  let totalMs=24*60*60*1000;
+  let remainingMs=distance>totalMs?totalMs:distance;
+  let percent=(remainingMs/totalMs)*100;
+  document.getElementById("progress").style.width=percent+"%";
+
   let table=document.getElementById("routine");
-  let nowTime = new Date().getTime();
+  let nowTime=new Date().getTime();
+
   for(let i=1;i<table.rows.length;i++){
-    let examDate = new Date(table.rows[i].cells[0].innerText + " 08:00:00").getTime();
-    if(examDate < nowTime){
+    let examDate=new Date(table.rows[i].cells[0].innerText+" 08:00:00").getTime();
+    if(examDate<nowTime){
       table.rows[i].classList.add("finishedExam");
     }
   }
