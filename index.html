@@ -358,7 +358,7 @@
         const minutes = Math.floor((distance % 3600000) / 60000);
         const seconds = Math.floor((distance % 60000) / 1000);
         
-        countdownEl.innerText = `⏳ Next Exam In: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+        countdownEl.innerText = `Next Exam In: ${days}d ${hours}h ${minutes}m ${seconds}s`;
 
         const oneDayMs = 24 * 60 * 60 * 1000;
         let remainingMs = distance > oneDayMs ? oneDayMs : distance;
